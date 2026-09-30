@@ -2,22 +2,22 @@ pipeline {
     agent any
 
     stages {
-        stage('Build Backend') {
+
+        stage('Backend - Install') {
             steps {
-                bat '''
-                    cd backend
-                    npm install
-                '''
+                bat 'cd backend && npm ci'
             }
         }
 
-        stage('Build Frontend') {
+        stage('Frontend - Install') {
             steps {
-                bat '''
-                    cd frontend
-                    npm install
-                    npm run build
-                '''
+                bat 'cd frontend && npm ci'
+            }
+        }
+
+        stage('Frontend - Build') {
+            steps {
+                bat 'cd frontend && npm run build'
             }
         }
     }
