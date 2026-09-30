@@ -2,14 +2,10 @@ pipeline {
     agent any
 
     stages {
-
-        stage('Install Dependencies') {
+        stage('Build Backend') {
             steps {
                 bat '''
                     cd backend
-                    npm install
-
-                    cd ..\\frontend
                     npm install
                 '''
             }
@@ -19,6 +15,7 @@ pipeline {
             steps {
                 bat '''
                     cd frontend
+                    npm install
                     npm run build
                 '''
             }
